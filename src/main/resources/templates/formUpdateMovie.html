@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>
+		update Movie
+	</title>
+	<link rel="stylesheet" href="/stile.css?version=3" />
+</head>
+
+<body>
+	<div><a href="/"><img src="images/logo-siw.png" width="50%"/></a></div>
+	<h1>Aggiorna film</h1>
+	<div th:if="${movie}">
+	<h1 th:text="'aggiungi artista per'+${movie.title}">titolo</h1>
+	</div>
+	<div th:if="${artist}">
+    <div th:text="${artist.name}"> nome artista</div>
+		<div>Cognome: <span th:text="'(' + ${artist.surname} + ')'">cognome</span></div>
+        <div>Anno: <span th:text="'(' + ${artist.year} + ')'">2000</span></div>
+        
+    </div>
+	<a th:href="@{'/addDirector'+ '/' + ${movie.id}}" th:text="aggiungiRegista">regista</a>
+	<a th:href="@{'/addActor'+ '/' + ${movie.id}}" th:text="aggiungiAttore">regista</a>
+</body>
+
+</html>
