@@ -16,7 +16,7 @@ public class Cuoco {
 	private Long id;
 	private String nome;
 	private Integer year;
-	private String urlImage;
+	private String immagine;
 	@OneToMany(mappedBy="cuoco")
 	private List<Ricetta> ricette;
 	public Long getId() {
@@ -37,11 +37,11 @@ public class Cuoco {
 	public void setYear(Integer year) {
 		this.year = year;
 	}
-	public String getUrlImage() {
-		return urlImage;
+	public String getImmagine() {
+		return immagine;
 	}
-	public void setUrlImage(String urlImage) {
-		this.urlImage = urlImage;
+	public void setImmagine(String immagine) {
+		this.immagine = immagine;
 	}
 	@Override
 	public int hashCode() {

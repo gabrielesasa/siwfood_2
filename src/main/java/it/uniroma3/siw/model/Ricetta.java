@@ -17,8 +17,8 @@ public class Ricetta {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private String nome;
+	private String immagine;
 	private String descrizione;
-	private String urlImage;
 	@ManyToOne
 	private Cuoco cuoco;
 	@OneToMany
@@ -41,11 +41,11 @@ public class Ricetta {
 	public void setDescrizione(String descrizione) {
 		this.descrizione = descrizione;
 	}
-	public String getUrlImage() {
-		return urlImage;
+	public String getImmagine() {
+		return immagine;
 	}
-	public void setUrlImage(String urlImage) {
-		this.urlImage = urlImage;
+	public void setImmagine(String immagine) {
+		this.immagine = immagine;
 	}
 	@Override
 	public int hashCode() {

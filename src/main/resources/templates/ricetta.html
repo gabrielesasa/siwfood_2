@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Ricetta</title>
+<link rel="stylesheet" href="/css/stile2.css?version=2" />
+</head>
+<body>
+  <div th:if="${ricetta}">
+    <h1 th:text="${ricetta.nome}"> nome ricetta</h1>
+		<span><img width="30%" th:src=${ricetta.immagine} /></span>
+        <div>Descrizione: <span th:text="'(' + ${ricetta.descrizione} + ')'">descrizione</span></div>
+    </div>
+    <div th:unless="${ricetta}">Non esiste</div>
+</body>
+</html>

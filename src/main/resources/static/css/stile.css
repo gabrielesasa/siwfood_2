@@ -1,6 +1,10 @@
 body { 
+	background-image: url('/images/logo.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
     font-family: "Geneva";
-    color:dimgrey;
+    color:red;
 }
 
 a { 
