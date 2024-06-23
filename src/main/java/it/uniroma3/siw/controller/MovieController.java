@@ -33,6 +33,7 @@ public class MovieController {
 	  @GetMapping("/formNewMovie")
 	    public String formNewMovie(Model model) {
 	    model.addAttribute("movie", new Movie());
+	    
 	    return "formNewMovie.html";
 	  }
 	  @GetMapping("/formFindMovie")
