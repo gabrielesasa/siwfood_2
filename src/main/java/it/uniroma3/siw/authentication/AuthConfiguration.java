@@ -41,12 +41,12 @@ public class AuthConfiguration {
         .cors().disable()
         .authorizeHttpRequests()
             // chiunque (autenticato o no) può accedere alle pagine index, login, register, ai css e alle immagini
-            .requestMatchers(HttpMethod.GET, "/**", "/index", "/register", "/css/**", "/images/**", "favicon.ico","/menu/**").permitAll()
+            .requestMatchers(HttpMethod.GET, "/", "/generico/**", "/register", "/css/**", "/images/**", "favicon.ico").permitAll()
             // chiunque (autenticato o no) può mandare richieste POST al punto di accesso per login e register 
-            .requestMatchers(HttpMethod.POST, "/**").permitAll()
+            .requestMatchers(HttpMethod.POST, "/generico/**").permitAll()
             // solo gli amministratori possono accedere alle pagine admin
-            .requestMatchers(HttpMethod.GET, "/admin/**").hasAnyAuthority("ADMIN_ROLE")
-            .requestMatchers(HttpMethod.POST, "/admin/**").hasAnyAuthority("ADMIN_ROLE")
+            .requestMatchers(HttpMethod.GET, "/cuoco/**").hasAnyAuthority("ADMIN_ROLE")
+            .requestMatchers(HttpMethod.POST, "/cuoco/**").hasAnyAuthority("ADMIN_ROLE")
             // tutti gli utenti autenticati possono accedere alle pagine rimanenti 
             .anyRequest().authenticated()
         // LOGIN: qui definiamo il login

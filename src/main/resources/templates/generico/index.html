@@ -6,9 +6,24 @@
 		SiwFood - Homepage
 	</title>
 	<link rel="stylesheet" href="/css/stile2.css" />
+	
 </head>
 
 <body>
+	<header>
+	
+	
+		<div th:if="${#userDetails}">
+			<span th:text="${#userDetails.username}"></span>
+			<a href="/logout">Logout</a>
+		</div>
+		<div th:unless="${#user}">
+			<a href="/login">Login</a>
+		</div>
+		</div>
+		</div>
+	
+	</header>
 	<h1>SiwFood</h1>
 	
 	<div>

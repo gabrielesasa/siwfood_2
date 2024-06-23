@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+
+</body>
+</html><!DOCTYPE html>
+<html>
+
+<head>
+	<title>
+		SiwFood - Homepage
+	</title>
+	<link rel="stylesheet" href="/css/stile2.css" />
+</head>
+
+<body>
+	<header>
+		
+		<div th:if="${#userDetails}">
+			<span th:text="${#userDetails.username}"></span>
+			<a href="/logout">Logout</a>
+		</div>
+		<div th:unless="${#user}">
+			<a href="/login">Login</a>
+	</header>
+	<h1>SiwFood</h1>
+	
+	<div>
+		<a href="/menu">menu</a>
+
+	</div>
+	<div>
+		<a href="/indexCuoco2">idnex</a>
+
+	</div>
+	
+</body>
+
+</html>

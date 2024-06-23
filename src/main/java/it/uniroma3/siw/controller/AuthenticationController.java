@@ -1,6 +1,8 @@
 package it.uniroma3.siw.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
@@ -32,7 +34,7 @@ public class AuthenticationController {
 	public String getRegistrazione(Model model) {
 		model.addAttribute("user",new User());
 		model.addAttribute("credentials",new Credentials());
-		return "formRegistrazione.html";
+		return "/generico/formRegistrazione.html";
 		}
 	@PostMapping("/registrazione")
     public String registerUser(@ModelAttribute("user") User user,
@@ -44,11 +46,11 @@ public class AuthenticationController {
             credentialsService.saveCredentials(credentials);
             userService.saveUser(user);
             model.addAttribute("user", user);
-            return "index.html";
+            return "/generico/index.html";
     }
 	@GetMapping(value = "/login") 
 	public String showLoginForm (Model model) {
-		return "formLogin";
+		return "/generico/formLogin";
 	}
 	@GetMapping("/success")
     public String defaultAfterLogin(Model model) {
@@ -56,8 +58,23 @@ public class AuthenticationController {
     	UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     	Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
     	if (credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
-            return "admin/indexAdmin.html";
+            return "cuoco/indexCuoco.html";
         }
-        return "index.html";
+        return "/generico/index.html";
     }
+	@GetMapping(value = "/") 
+	public String index(Model model) {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		if (authentication instanceof AnonymousAuthenticationToken) {
+	        return "/generico/index.html";
+		}
+		else {		
+			UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+			Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
+			if (credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
+				return "cuoco/indexCuoco.html";
+			}
+		}
+        return "/generico/index.html";
+	}
 }

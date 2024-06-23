@@ -18,11 +18,11 @@ public class RicettaController {
 	@GetMapping("/paginaricette")
 	public String getRicette(Model model) {		
 		model.addAttribute("ricette", this.ricettaService.findAll());
-		return "paginaricette.html";
+		return "/generico/paginaricette.html";
 		}
 	@GetMapping("/ricetta/{id}")
 	public String getRicetta(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("ricetta", this.ricettaService.findById(id));
-		return "ricetta.html";
+		return "/generico/ricetta.html";
 	}
 }
