@@ -1,6 +1,8 @@
 package it.uniroma3.siw.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,7 +18,7 @@ import it.uniroma3.siw.service.CredentialsService;
 import it.uniroma3.siw.service.UserService;
 
 @Controller
-public class AutenticazioneController {
+public class AuthenticationController {
 	@Autowired 
 	private CredentialsRepository credentialsRepository;
 	@Autowired 
@@ -43,5 +45,19 @@ public class AutenticazioneController {
             userService.saveUser(user);
             model.addAttribute("user", user);
             return "index.html";
+    }
+	@GetMapping(value = "/login") 
+	public String showLoginForm (Model model) {
+		return "formLogin";
+	}
+	@GetMapping("/success")
+    public String defaultAfterLogin(Model model) {
+        
+    	UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    	Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
+    	if (credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
+            return "admin/indexAdmin.html";
+        }
+        return "index.html";
     }
 }
