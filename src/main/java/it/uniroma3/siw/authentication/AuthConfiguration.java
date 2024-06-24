@@ -18,7 +18,9 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableWebSecurity
 public class AuthConfiguration {
 
-  @Autowired
+  public static final String DEFAULT_ROLE = "DEFAULT";
+	public static final String ADMIN_ROLE = "ADMIN";
+@Autowired
   private DataSource dataSource;
 
   @Autowired
@@ -45,8 +47,8 @@ public class AuthConfiguration {
             // chiunque (autenticato o no) può mandare richieste POST al punto di accesso per login e register 
             .requestMatchers(HttpMethod.POST, "/generico/**").permitAll()
             // solo gli amministratori possono accedere alle pagine admin
-            .requestMatchers(HttpMethod.GET, "/cuoco/**").hasAnyAuthority("ADMIN_ROLE")
-            .requestMatchers(HttpMethod.POST, "/cuoco/**").hasAnyAuthority("ADMIN_ROLE")
+            .requestMatchers(HttpMethod.GET, "/cuoco/**").hasAnyAuthority(ADMIN_ROLE)
+            .requestMatchers(HttpMethod.POST, "/cuoco/**").hasAnyAuthority(ADMIN_ROLE)
             // tutti gli utenti autenticati possono accedere alle pagine rimanenti 
             .anyRequest().authenticated()
         // LOGIN: qui definiamo il login

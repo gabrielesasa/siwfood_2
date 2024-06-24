@@ -22,7 +22,7 @@ public class Ricetta {
 	@ManyToOne
 	private Cuoco cuoco;
 	@OneToMany
-	private List<Ingrediente> ingredienti;
+	private List<IngredientePerRicetta> ingredienteRicetta;
 	public Long getId() {
 		return id;
 	}
@@ -47,6 +47,13 @@ public class Ricetta {
 	public void setImmagine(String immagine) {
 		this.immagine = immagine;
 	}
+	public Cuoco getCuoco() {
+		return cuoco;
+	}
+	public void setCuoco(Cuoco cuoco) {
+		this.cuoco = cuoco;
+	}
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);

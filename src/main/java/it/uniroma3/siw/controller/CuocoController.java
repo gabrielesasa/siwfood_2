@@ -7,7 +7,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import it.uniroma3.siw.model.Movie;
 import it.uniroma3.siw.repository.CuocoRepository;
 import it.uniroma3.siw.service.CuocoService;
 
@@ -17,12 +16,12 @@ public class CuocoController {
 	private CuocoRepository cuocoRepository;
 	@Autowired
 	private CuocoService cuocoService;
-	@GetMapping("/paginacuochi")
+	@GetMapping("/generico/paginacuochi")
 	public String getCuoco(Model model) {		
 		model.addAttribute("cuochi", this.cuocoService.findAll());
 		return "/generico/paginacuochi.html";
 		}
-	@GetMapping("/menu")
+	@GetMapping("/generico/menu")
 	public String getmenu() {		
 		return "/generico/menu.html";
 		}
@@ -31,9 +30,7 @@ public class CuocoController {
 		model.addAttribute("cuoco", this.cuocoService.findById(id));
 		return "/generico/cuoco.html";
 	}
-	@GetMapping(value="/indexCuoco2")
-	public String formNewMovie(Model model) {
-		return "cuoco/indexCuoco2.html";
-	}
+	
+
 }
 
