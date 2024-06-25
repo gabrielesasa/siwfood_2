@@ -54,6 +54,12 @@ public class Ricetta {
 		this.cuoco = cuoco;
 	}
 	
+	public List<IngredientePerRicetta> getIngredienteRicetta() {
+		return ingredienteRicetta;
+	}
+	public void setIngredienteRicetta(List<IngredientePerRicetta> ingredienteRicetta) {
+		this.ingredienteRicetta = ingredienteRicetta;
+	}
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);

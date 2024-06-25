@@ -31,6 +31,6 @@ public class CuocoController {
 		return "/generico/cuoco.html";
 	}
 	
-
+	
 }
 

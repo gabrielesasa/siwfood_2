@@ -73,4 +73,10 @@ public class RicettaController {
 		model.addAttribute("ricetta", ricettaRepository.findById(id).get());
 		return "cuoco/cuocoDaAggiungere.html";
 	}
+	@GetMapping("cuoco/aggiungiIngredienteRicetta")
+	public String aggiungiRicetta(Model model) {
+		model.addAttribute("ricette", ricettaRepository.findAll());
+	    
+	    return "cuoco/aggiungiIngredienteRicetta.html";
+	}
 }
